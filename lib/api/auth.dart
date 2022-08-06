@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 
+const String allowCORSEndPoint = "https://api.allorigins.win/raw?url=";
+
 class User {
   final String username;
   final String email;
@@ -22,7 +24,8 @@ class User {
 
 Future<User> register(String email, String username, String password) async {
   final response = await http.post(
-    Uri.parse('https://log-reg.herokuapp.com/api/users/register.php'),
+    Uri.parse(
+        '${allowCORSEndPoint}https://log-reg.herokuapp.com/api/users/register.php'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -62,7 +65,8 @@ Future<User> register(String email, String username, String password) async {
 
 Future<User> login(String email, String password) async {
   final response = await http.post(
-    Uri.parse('https://log-reg.herokuapp.com/api/users/login.php'),
+    Uri.parse(
+        '${allowCORSEndPoint}https://log-reg.herokuapp.com/api/users/login.php'),
     // Uri.parse('http://localhost:80/log_reg_api/api/users/login.php'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
